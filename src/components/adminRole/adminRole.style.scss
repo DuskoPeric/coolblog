@@ -1,0 +1,22 @@
+@import "../../style/variables.scss";
+.adminRoleContent {
+  text-align: center;
+  .role-list {
+    margin-bottom: 30px;
+    div {
+      color: $darker-base-color;
+      width: 150px;
+      text-align: center;
+      margin: auto;
+      padding-top: 5px;
+      background: $mid-base-color;
+      padding-bottom: 5px;
+      border-bottom: solid 1px $base-color;
+      cursor: pointer;
+      &.active {
+        background: $darker-base-color;
+        color: $mid-base-color;
+      }
+    }
+  }
+}

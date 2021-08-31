@@ -1,0 +1,18 @@
+.commentsList {
+  h2 {
+    text-align: center;
+  }
+  .commentsContainer {
+    height: 300px;
+    overflow: auto;
+    .commentsBox {
+      background: #ffe5bb;
+      padding: 5px;
+      margin-bottom: 10px;
+      color: #69593f;
+      .margin-top-10 {
+        margin-top: 10px;
+      }
+    }
+  }
+}

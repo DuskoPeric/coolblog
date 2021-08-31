@@ -1,0 +1,22 @@
+@import "../../style/variables.scss";
+.admin-panel {
+  margin-top: 50px;
+  text-align: left;
+  font-family: $base-font;
+
+  .section-link {
+    padding: 5px 10px;
+    background: transparent;
+    border: solid 2px $base-color;
+    margin-right: 10px;
+    color: $base-color;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: 20px;
+    &.active {
+      color: $white;
+      background: $base-color;
+    }
+  }
+}

@@ -1,0 +1,109 @@
+@import "../../style/variables.scss";
+.profile-card {
+  width: 500px;
+  max-width: 90%;
+  background: $base-color;
+  margin: auto;
+  margin-top: 50px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  position: relative;
+  border-radius: 7px;
+  .role {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: solid 1px #fde0ae;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    i {
+      width: 90px;
+      height: 90px;
+      display: flex;
+      border-radius: 50%;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      color: $base-color;
+      background: #ffe5bb;
+    }
+    span{
+      width: 90px;
+      height: 90px;
+      display: flex;
+      border-radius: 50%;
+      justify-content: center;
+      align-items: center;
+      font-size: 3rem;
+      color: $base-color;
+      background: #ffe5bb;
+    }
+  }
+  h2 {
+    text-transform: uppercase;
+    font-weight: 300;
+    color: #ffeac7;
+  }
+  p {
+    color: #f3ddb8;
+    font-size: 1.1rem;
+    width: 80%;
+    margin: auto;
+    border-top: solid 1px #ffe5bb;
+    border-bottom: solid 1px #ffe5bb;
+    padding: 10px 0px;
+    i {
+      display: flex;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin: auto;
+      background: #ffe5bb;
+      color: #c4a97c;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+        span {
+      display: flex;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin: auto;
+      background: #ffe5bb;
+      color: #c4a97c;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+  }
+  .edit {
+    i {
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      font-size: 2.2rem;
+      color: #ffe5bb;
+      cursor: pointer;
+      &:hover {
+        color: white;
+      }
+    }
+    span{
+      position: absolute;
+      top: 12px;
+      left: 14px;
+      font-size: 1.6rem;
+      color: #c4a97c;
+      cursor: pointer;
+      background: #ffe5bb;
+      padding: 3px;
+      border-radius: 4px;
+      &:hover {
+        background: white;
+      }
+    }
+  }
+}

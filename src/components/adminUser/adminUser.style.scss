@@ -1,0 +1,75 @@
+@import "../../style/variables.scss";
+.user-tab {
+  width: 542px;
+  display: flex;
+  border-bottom: solid 1px $light-base-color;
+  > div {
+    border-right: solid 1px $light-base-color;
+    padding: 10px 10px 8px 10px;
+    &:first-child {
+      border-left: solid 1px $light-base-color;
+    }
+  }
+  .item-name {
+    width: 150px;
+    p {
+      margin: 0;
+      width: 150px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+  .item-email {
+    width: 200px;
+    p {
+      margin: 0;
+      width: 200px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+  .item-role {
+    width: 130px;
+    display: flex;
+    div {
+      min-width: 100px;
+    }
+    i {
+      font-size: 1.3rem;
+      color: $base-color;
+      margin-left: 5px;
+      position: relative;
+      cursor: pointer;
+      top: 2px;
+      &:hover {
+        color: black;
+      }
+    }
+        span {
+      font-size: 1.2rem;
+      color: #ffffff;
+      margin-left: 2px;
+      position: relative;
+      cursor: pointer;
+      padding: 2px;
+      background: #c4a97c;
+      border-radius: 3px;
+      &:hover {
+        color: black;
+      }
+    }
+  }
+  .item-delete {
+    text-align: center;
+    width: 50px;
+    color: $base-color;
+    i {
+      cursor: pointer;
+      &:hover {
+        color: black;
+      }
+    }
+  }
+}

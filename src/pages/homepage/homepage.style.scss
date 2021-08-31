@@ -1,0 +1,8 @@
+@import "../../style/variables.scss";
+.home {
+  margin-top: 64px;
+  @media #{$tablet}{
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+}

@@ -1,0 +1,160 @@
+@import "../../style/variables.scss";
+header {
+  background: $white;
+  border-bottom: 1px solid #e9ecef;
+  font-family: $base-font;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  .left-content-header {
+    .logo {
+      font-family: "Condiment", cursive;
+      color: $base-color;
+      font-size: 2rem;
+      margin-right: 40px;
+      padding-bottom: 15px;
+      padding-top: 15px;
+      position: relative;
+      top: 3px;
+      span {
+        color: $base-color-two;
+      }
+    }
+    nav {
+      ul {
+        li {
+          padding-left: 0.75rem;
+          padding-right: 0.75rem;
+          font-family: $base-font;
+          font-size: 0.8125rem;
+          font-weight: 500;
+          &:hover {
+            a {
+              border-bottom: solid 2px;
+              padding-bottom: 3px;
+            }
+          }
+
+          a {
+            &.active {
+              border-bottom: solid 2px;
+              padding-bottom: 3px;
+            }
+          }
+        }
+      }
+      @media #{$tablet}{
+        display:none;
+      }
+    }
+  }
+  .right-content-header {
+    .profile {
+      margin-right: 15px;
+      margin-left: 30px;
+      a {
+        display: flex;
+        align-items: center;
+        i {
+          color: $base-color;
+          font-size: 1rem;
+          margin-right: 6px;
+          margin-left: 6px;
+        }
+        span {
+          background: $base-color;
+          position: relative;
+          border-radius: 50%;
+          padding: 2px;
+          color: white;
+          font-size: 18px;
+          margin-right: 5px;
+        }
+        &:hover {
+          border-bottom: solid 2px;
+          padding-bottom: 3px;
+        }
+      }
+    }
+    .liked {
+      a {
+        color: $base-color;
+        font-size: 1.5rem;
+        margin-right: 16px;
+        margin-left: 16px;
+        span.icon-liked{
+          font-size: 28px;
+          position: relative;
+          top: 2px;
+        }
+        &:hover {
+          color: $black;
+        }
+      }
+    }
+    .login {
+      text-transform: uppercase;
+    }
+    .writenew {
+      margin-left: 15px;
+      margin-right: 15px;
+    }
+    .signout,
+    .login {
+      font-size: 1.2rem;
+    }
+    .logout{
+      cursor: pointer;
+    }
+    @media #{$tablet}{
+      display:none;
+    }
+  }
+  .right-header-mobile{
+    display: none;
+    .burger-menu{
+      color: $base-color-two;
+      cursor: pointer;
+      margin-left: 11px;
+    }
+    &>a{
+      display: flex;
+      align-items: center;
+      span{
+        background: $base-color;
+        position: relative;
+        border-radius: 50%;
+        padding: 2px;
+        color: white;
+        font-size: 18px;
+        margin-right: 5px;
+      }
+    }
+    .mobile-nav{
+      position: absolute;
+      top: 80px;
+      background: #c4a97c;
+      right: 0px;
+      width: 200px;
+      z-index: 9;
+      ul{
+        padding-left: 15px;
+        li{
+          border-bottom: solid white 1px;
+          padding: 5px;
+          &:last-child{
+            border-bottom: none;
+          }
+          a{
+            display: flex;
+            color: white;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+    @media #{$tablet}{
+      display: flex;
+      align-items: center;
+    }
+  }
+}

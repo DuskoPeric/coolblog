@@ -1,0 +1,11 @@
+@import "../../style/variables.scss";
+
+.posts-holder {
+  margin-left: 30px;
+  width: calc(100% - 330px);
+  flex-wrap: wrap;
+  @media #{$tablet}{
+    margin-left: 0px;
+    width:100%;
+  }
+}

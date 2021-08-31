@@ -1,0 +1,33 @@
+@import "../../style/variables.scss";
+
+.authors {
+  h3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+    margin: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: $base-color;
+    font-size: 1rem;
+    cursor: pointer;
+    span{
+      &:hover{
+        color: $black;
+      }
+    }
+  }
+  li {
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    line-height: 1.15rem;
+    cursor: pointer;
+    &.selected {
+      color: $base-color;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+@import "../../style/variables.scss";
+
+.login-holder {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  @media #{$tablet}{
+    flex-wrap: wrap;
+  }
+}

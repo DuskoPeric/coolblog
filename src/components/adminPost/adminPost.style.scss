@@ -1,0 +1,93 @@
+@import "../../style/variables.scss";
+.item-tab {
+  width: 806px;
+  display: flex;
+  border-bottom: solid 1px $light-base-color;
+  > div {
+    border-right: solid 1px $light-base-color;
+    padding: 10px 10px 8px 10px;
+    &:first-child {
+      border-left: solid 1px $light-base-color;
+    }
+  }
+  .item-published {
+    width: 100px;
+  }
+  .item-title {
+    width: 200px;
+    p {
+      margin: 0;
+      width: 200px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+  .item-author {
+    width: 120px;
+  }
+  .item-category {
+    width: 120px;
+  }
+  .item-comments {
+    width: 90px;
+    display: flex;
+    div {
+      min-width: 20px;
+    }
+    i {
+      font-size: 1.3rem;
+      color: $base-color;
+      margin-left: 5px;
+      position: relative;
+      cursor: pointer;
+      top: 2px;
+      &:hover {
+        color: black;
+      }
+    }
+    span {
+      font-size: 1rem;
+      color: #ffffff;
+      margin-left: 2px;
+      position: relative;
+      cursor: pointer;
+      padding: 2px;
+      background: #c4a97c;
+      border-radius: 3px;
+      top: 0px;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:hover {
+        color: black;
+      }
+    }
+  }
+  .item-delete {
+    text-align: center;
+    width: 50px;
+    color: $base-color;
+    i {
+      cursor: pointer;
+      &:hover {
+        color: black;
+      }
+    }
+    span {
+      font-size: 1.2rem;
+      color: #ffffff;
+      margin-left: 2px;
+      position: relative;
+      cursor: pointer;
+      padding: 2px;
+      background: #c4a97c;
+      border-radius: 3px;
+      &:hover {
+        color: black;
+      }
+    }
+  }
+}

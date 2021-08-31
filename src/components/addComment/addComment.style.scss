@@ -1,0 +1,18 @@
+@import "../../style/variables.scss";
+.add-comment {
+  textarea {
+    border: solid 1px $base-color;
+    width: 500px;
+    max-width: 90%;
+    height: 80px;
+    display: block;
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 5px;
+    resize: none;
+    margin-bottom: 10px;
+    &:focus {
+      outline: none;
+    }
+  }
+}

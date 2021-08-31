@@ -1,0 +1,28 @@
+@import "../../style/variables.scss";
+.register {
+  font-family: $base-font;
+  width: 50%;
+  @media #{$tablet}{
+    width: 100%;
+  }
+  .subtitle {
+    font-weight: 300;
+    font-size: 1.1rem;
+    margin-top: 5px;
+    margin-bottom: 40px;
+  }
+  h2 {
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+  form {
+    width: 300px;
+    margin: auto;
+    @media #{$tablet}{
+      width: 100%;
+    }
+    button {
+      margin-top: 30px;
+    }
+  }
+}

@@ -1,0 +1,34 @@
+@import "../../style/variables.scss";
+.admin-post-table {
+  margin-bottom: 50px;
+  max-width: 100%;
+  overflow: scroll;
+  .head-tab {
+    margin-top: 50px;
+    width: 807px;
+    display: flex;
+    background: $light-base-color;
+    > div {
+      border-right: solid 1px white;
+      padding: 10px;
+    }
+    .head-published {
+      width: 100px;
+    }
+    .head-title {
+      width: 200px;
+    }
+    .head-author {
+      width: 120px;
+    }
+    .head-category {
+      width: 120px;
+    }
+    .head-comments {
+      width: 90px;
+    }
+    .head-delete {
+      width: 51px;
+    }
+  }
+}

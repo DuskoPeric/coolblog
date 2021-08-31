@@ -1,0 +1,23 @@
+.comment-content {
+  border-bottom: solid 1px #0000001f;
+  width: 500px;
+  max-width: 100%;
+  &:last-child {
+    border-bottom: none;
+  }
+  .author {
+    margin: 0;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 10px;
+  }
+  .time {
+    margin: 0;
+    font-size: 0.75rem;
+    color: #00000091;
+  }
+  .content {
+    font-size: 0.9rem;
+    color: #000000b5;
+  }
+}

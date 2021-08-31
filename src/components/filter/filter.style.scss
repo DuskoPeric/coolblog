@@ -1,0 +1,9 @@
+@import "../../style/variables.scss";
+.left-filter {
+  width: 300px;
+  background: $light-gray;
+  @media #{$tablet}{
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}

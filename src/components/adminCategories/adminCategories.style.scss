@@ -1,0 +1,26 @@
+@import "../../style/variables.scss";
+.admin-categories-table {
+  margin-bottom: 50px;
+  .head-tab {
+    margin-top: 50px;
+    width: 246px;
+    display: flex;
+    background: $light-base-color;
+    > div {
+      border-right: solid 1px white;
+      padding: 10px;
+    }
+    .head-name {
+      width: 150px;
+    }
+    .head-email {
+      width: 200px;
+    }
+    .head-role {
+      width: 54px;
+    }
+    .head-delete {
+      width: 51px;
+    }
+  }
+}

@@ -1,0 +1,57 @@
+@import "../../style/variables.scss";
+.custom-btn {
+  background: #c4a97c00;
+  border: solid 2px #c4a97c;
+  padding: 5px 15px;
+  border-radius: 30px;
+  color: #c4a97c;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  &.notify{
+    border-color: white;
+    color: white;
+    align-self: center;
+    &:hover {
+      border-color: black;
+      color: black;
+    }
+  }
+  &.fullshape {
+    border-radius: 5px;
+    padding: 7px 30px;
+    background: #c4a97c;
+    color: white;
+  }
+  &.cancel {
+    padding: 8px 21px;
+    background: #ffe5bb;
+    border-radius: 5px;
+    border-color: #ffe5bb;
+    &:hover {
+      background: transparent;
+      color: #ffe5bb;
+    }
+  }
+  &.submit {
+    background: white;
+    border-radius: 5px;
+    padding: 8px 21px;
+    border-color: white;
+    &:hover {
+      background: transparent;
+      border-color: white;
+    }
+  }
+  &.margin-right {
+    margin-right: 15px;
+  }
+  &.margintop20 {
+    margin-top: 20px;
+  }
+  &:hover {
+    background: #c4a97c;
+    color: white;
+  }
+}

@@ -1,0 +1,13 @@
+.notification{
+    position: fixed;
+    bottom: 0;
+    background: #c4a97c;
+    width: 100%;
+    color: white;
+    font-size: 17px;
+    display: flex;
+    justify-content: center;
+    p{
+        margin-right: 15px;
+    }
+}

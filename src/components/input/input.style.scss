@@ -1,0 +1,17 @@
+.custom-input {
+  border: none;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.26);
+  font-size: 1.05rem;
+  margin-top: 20px;
+  padding: 5px;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+  &:focus {
+    outline: none;
+  }
+  &.short {
+    width: 500px;
+    max-width: 100%;
+  }
+}
