@@ -11,6 +11,7 @@ import {
 
 import Post from "../post/post.component";
 import Spinner from "../spinner/spinner.component";
+import EmptyList from "../emptyList/emptyList.component";
 
 const PostList = props => {
   const { posts } = props;
@@ -21,7 +22,7 @@ const PostList = props => {
         return <Post key={post.id} post={post} state={{ from: "home" }} />;
       })
     ) : (
-        <p>No posts</p>
+        <EmptyList message="No posts"/>
       );
 
   return <div className="posts-holder flex">{postsList}</div>;

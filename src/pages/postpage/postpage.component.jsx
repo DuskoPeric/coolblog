@@ -55,6 +55,7 @@ const PostPage = (props) => {
       post={post}
       comments={comments}
       onChangeComment={() => {
+        _isMounted=true;
         getPostData();
         getComments();
         updateNumberOfComments(

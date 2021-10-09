@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from 'react-router'
 
 import "./signin.style.scss";
 
@@ -10,6 +11,7 @@ import Input from "../input/input.component";
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory()
 
   const handleForm = async event => {
     event.preventDefault();
@@ -17,6 +19,7 @@ const SignIn = () => {
       await auth.signInWithEmailAndPassword(email, password);
       setEmail("");
       setPassword("");
+      history.go(0);
     } catch (error) {
       alert("error :" + error.message);
     }

@@ -28,13 +28,13 @@ import Notification from "./components/notification/notification.component";
 
 const App = (props) => {
   let unsubscribe = null;
-  const { setUser, user } = props;
+  const { setUser, user,setPosts,setAuthors,setCategories } = props;
   const [showNotification, setShowNotification] = useState(false)
 
   const getData = async () => {
-    props.setPosts(await getDataList("/posts"));
-    props.setAuthors(await getDataList("/users"));
-    props.setCategories(await getDataList("/categories"));
+    setPosts(await getDataList("/posts"));
+    setAuthors(await getDataList("/users"));
+    setCategories(await getDataList("/categories"));
   };
 
   useEffect(() => {
@@ -50,7 +50,6 @@ const App = (props) => {
         });
       } else if (user && !user.emailVerified) {
         setShowNotification(true)
-        //auth.signOut();
       }
       else if (user === null) {
         setUser(user);

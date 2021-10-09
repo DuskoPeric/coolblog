@@ -1,0 +1,73 @@
+.emptyicon-holder {
+  position: relative;
+  width: 200px;
+  .icon-post-page {
+    position: absolute;
+    width: 150px;
+    height: 100px;
+    background: #f4efe5;
+    border-radius: 3px;
+    overflow: hidden;
+    -webkit-box-shadow: 5px 5px 9px -2px rgba(0, 0, 0, 0.31);
+    box-shadow: 5px 5px 9px -2px rgba(0, 0, 0, 0.31);
+    &.first {
+      transform: rotate(-10deg);
+    }
+    &.second {
+      margin-top: 50px;
+      margin-left: 20px;
+      background: #fcf8f1;
+    }
+    .icon-post-page-title {
+      background: #c4aa7c93;
+      width: 70px;
+      height: 7px;
+      border-radius: 4px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      margin-left: 10px;
+    }
+    .icon-post-page-text {
+      background: #c4aa7c64;
+      height: 4px;
+      border-radius: 2px;
+      margin-top: 5px;
+      margin-left: 10px;
+      &.short-line {
+        width: 90px;
+      }
+      &.long-line {
+        width: 120px;
+      }
+    }
+  }
+  .error-sign {
+    position: absolute;
+    top: 110px;
+    left: 120px;
+    .circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: solid 7px #c4a97c;
+      position: relative;
+      &:after {
+        content: "";
+        position: absolute;
+        width: 60px;
+        transform: rotate(45deg);
+        height: 7px;
+        background: #c4a97c;
+        top: 20px;
+        left: -5px;
+      }
+    }
+  }
+  .icon-message {
+    position: relative;
+    top: 182px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #c5a97c;
+  }
+}
