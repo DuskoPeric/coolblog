@@ -3,7 +3,7 @@ import { Link, withRouter, NavLink } from "react-router-dom";
 
 import "./postContent.style.scss";
 
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectSpecificAuthors } from "../../redux/authors/author.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 
@@ -16,13 +16,15 @@ import { addLike } from "../../services/users";
 
 
 const PostContent = (props) => {
+  const author=useSelector(state=>selectSpecificAuthors(props.post.authorId)(state));
+  const user=useSelector(state=>selectCurrentUser(state))
 
   const changeLiked = async add => {
     const updatedLiked = add
-      ? [...props.user.liked, props.post.id]
-      : props.user.liked.filter(item => item !== props.post.id);
+      ? [...user.liked, props.post.id]
+      : user.liked.filter(item => item !== props.post.id);
 
-    addLike(props.user.id, updatedLiked);
+    addLike(user.id, updatedLiked);
   };
 
   const {
@@ -34,7 +36,7 @@ const PostContent = (props) => {
     authorId,
     commentsNo
   } = props.post;
-  const { author, onChangeComment, user } = props;
+  const { onChangeComment } = props;
   let back = null;
   const dest =
     props.history.location.state.from === "home"
@@ -115,9 +117,5 @@ const PostContent = (props) => {
   );
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  author: selectSpecificAuthors(ownProps.post.authorId)(state),
-  user: selectCurrentUser(state)
-});
 
-export default withRouter(connect(mapStateToProps)(PostContent));
+export default withRouter(PostContent);

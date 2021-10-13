@@ -1,16 +1,20 @@
-import authorsTypes from "./authors.types";
+import {createSlice} from '@reduxjs/toolkit';
 const INITIAL_STATE = {
   authors: [],
   isLoaded: false
 };
 
-const authorsReducer = (state = INITIAL_STATE, action) => {
-  switch (action.type) {
-    case authorsTypes.SET_AUTHORS:
+const authorsSlice=createSlice({
+  name:'authors',
+  initialState:INITIAL_STATE,
+  reducers:{
+    setAuthors(state,action){
       return { ...state, authors: action.payload, isLoaded: true };
-    default:
-      return state;
+    }
   }
-};
+})
+
+const authorsReducer=authorsSlice.reducer;
+export const authorsActions=authorsSlice.actions;
 
 export default authorsReducer;

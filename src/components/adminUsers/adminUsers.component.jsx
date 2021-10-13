@@ -4,19 +4,21 @@ import "./adminUsers.style.scss";
 
 import { getDataList } from "../../services/Utils";
 
-import { connect } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { selectAuthors } from "../../redux/authors/author.selectors";
-import { setUser } from "../../redux/user/user.actions";
-import { setAuthors } from "../../redux/authors/authors.actions";
 
 import AdminUser from "../adminUser/adminUser.component";
 import Popup from "../popup/popup.component";
 import AdminRole from "../adminRole/adminRole.component";
 import { updateUserRole } from "../../services/users";
+import { userActions } from "../../redux/user/user.reducer";
+import { authorsActions } from "../../redux/authors/author.reducer";
 
 
 
 const AdminUsers = (props) => {
+  const dispatch = useDispatch();
+  const users=useSelector(state=>selectAuthors(state))
   const [isOpenRolePopup, setIsOpenRolePopup] = useState(false);
   const [choosenRole, setChoosenRole] = useState(null);
   const [activeUser, setActiveUser] = useState(null);
@@ -24,7 +26,7 @@ const AdminUsers = (props) => {
   const updateUser = async () => {
     await updateUserRole(activeUser, choosenRole);
     setIsOpenRolePopup(false);
-    props.setAuthors(await getDataList("/users"));
+    dispatch(authorsActions.setAuthors(await getDataList("/users")));
   };
 
   const changeRoleHandler = (role, id) => {
@@ -32,8 +34,6 @@ const AdminUsers = (props) => {
     setChoosenRole(role);
     setActiveUser(id);
   }
-
-  const { users } = props;
 
   return (
     <div>
@@ -65,16 +65,5 @@ const AdminUsers = (props) => {
     </div>
   );
 }
-const mapStateToProps = state => ({
-  users: selectAuthors(state)
-});
 
-const mapDispatchToProps = dispatch => ({
-  setUser: user => dispatch(setUser(user)),
-  setAuthors: authors => dispatch(setAuthors(authors))
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AdminUsers);
+export default AdminUsers;

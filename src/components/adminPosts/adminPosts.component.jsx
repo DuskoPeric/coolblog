@@ -4,9 +4,8 @@ import "./adminPosts.style.scss";
 
 import { getDataList } from "../../services/Utils";
 
-import { connect } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { selectCurrentPosts } from "../../redux/posts/posts.selectors";
-import { setPosts } from "../../redux/posts/posts.actions";
 
 import AdminPost from "../adminPost/adminPost.component";
 import EditComments from "../editComments/editComments.component";
@@ -14,9 +13,11 @@ import Spinner from "../spinner/spinner.component";
 import Popup from "../popup/popup.component";
 import DeleteItem from "../deleteItem/deleteItem.component";
 import { deletePost } from "../../services/posts";
+import { postsActions } from "../../redux/posts/posts.reducer";
 
 const AdminPosts = (props) => {
-
+  const dispatch=useDispatch();
+  const posts=useSelector(state=>selectCurrentPosts(state));
   const [isOpenPopup, setIsOpenPopup] = useState(false);
   const [isOpenCommentsPopup, setIsOpenCommentsPopup] = useState(false);
   const [activePost, setActivePost] = useState(null);
@@ -25,12 +26,10 @@ const AdminPosts = (props) => {
   const deleteSelectedPost = async () => {
     await deletePost(activePost);
     setPostLoaded(false);
-    await props.setPosts(await getDataList("/posts"));
+    await dispatch(postsActions.setPosts(await getDataList("/posts")));
     setPostLoaded(true);
     setIsOpenPopup(false);
   };
-
-  const { posts } = props;
 
   return (
     <div>
@@ -85,7 +84,7 @@ const AdminPosts = (props) => {
           <EditComments
             postComments={activePost}
             reloadPosts={async () => {
-              await props.setPosts(await getDataList("/posts"));
+              await dispatch(postsActions.setPosts(await getDataList("/posts")));
             }}
           />
         </Popup>
@@ -93,15 +92,5 @@ const AdminPosts = (props) => {
     </div>
   );
 }
-const mapStateToProps = state => ({
-  posts: selectCurrentPosts(state)
-});
 
-const mapDispatchToProps = dispatch => ({
-  setPosts: posts => dispatch(setPosts(posts))
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Spinner(AdminPosts));
+export default Spinner(AdminPosts);

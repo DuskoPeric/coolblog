@@ -2,25 +2,27 @@ import React, { useState } from "react";
 
 import "./filter.style.scss";
 
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { isAuthorsLoaded } from "../../redux/authors/author.selectors";
 import { isCategoriesLoaded } from "../../redux/categories/categories.selectors";
 
 import Authors from "../authors/authors.component";
 import Categories from "../categories/categories.component";
 
-const SideFilter = (props) => {
+const SideFilter = () => {
   const [selectedItem, setSelectedItem] = useState('');
+  const checkisAuthorsLoaded=useSelector(state=>isAuthorsLoaded(state))
+  const checkisCategoriesLoaded=useSelector(state=>isCategoriesLoaded(state))
 
   return (
     <aside className="left-filter">
       <Categories
-        isLoaded={props.isCategoriesLoaded}
+        isLoaded={checkisCategoriesLoaded}
         selected={selectedItem}
         setSelected={item => setSelectedItem(item)}
       />
       <Authors
-        isLoaded={props.isAuthorsLoaded}
+        isLoaded={checkisAuthorsLoaded}
         selected={selectedItem}
         setSelected={item => setSelectedItem(item)}
       />
@@ -28,9 +30,4 @@ const SideFilter = (props) => {
   );
 }
 
-const mapStateToProps = state => ({
-  isAuthorsLoaded: isAuthorsLoaded(state),
-  isCategoriesLoaded: isCategoriesLoaded(state)
-});
-
-export default connect(mapStateToProps)(SideFilter);
+export default SideFilter;

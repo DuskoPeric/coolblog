@@ -2,24 +2,27 @@ import React, { useState } from "react";
 
 import "./addComment.style.scss";
 
-import { connect } from "react-redux";
-import { setPosts } from "../../redux/posts/posts.actions";
+import { connect,useSelector,useDispatch } from "react-redux";
 
 import { getDataList } from "../../services/Utils";
 
 import Button from "../button/button.component";
 import { addComment } from "../../services/posts";
+import { selectCurrentUserId } from "../../redux/user/user.selectors";
+import { postsActions } from "../../redux/posts/posts.reducer";
 
 const AddComment = (props) => {
+  const dispatch=useDispatch();
+  const author=useSelector(state=>selectCurrentUserId(state))
   const [comment, setComment] = useState('');
 
   const handleForm = async event => {
     event.preventDefault();
     try {
-      await addComment(props.postId, comment, props.author);
+      await addComment(props.postId, comment, author);
       setComment("");
       props.newComment();
-      props.setPosts(await getDataList("/posts"));
+      dispatch(postsActions.setPosts(await getDataList("/posts")));
 
     } catch (error) {
       alert("error creating comment " + error);
@@ -48,14 +51,5 @@ const AddComment = (props) => {
   );
 }
 
-const mapStateToProps = state => ({
-  author: state.user.user.id
-});
-const mapDispatchToProps = dispatch => ({
-  setPosts: posts => dispatch(setPosts(posts))
-});
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AddComment);
+export default AddComment;

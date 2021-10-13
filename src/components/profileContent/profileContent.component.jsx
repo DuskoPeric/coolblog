@@ -2,9 +2,7 @@ import React, { useState } from "react";
 
 import "./profileContent.style.scss";
 
-import { connect } from "react-redux";
-import { setUser } from "../../redux/user/user.actions";
-import { setAuthors } from "../../redux/authors/authors.actions";
+import { useDispatch } from "react-redux";
 
 import { getDataList } from "../../services/Utils";
 
@@ -12,9 +10,12 @@ import Spinner from "../spinner/spinner.component";
 import Popup from "../popup/popup.component";
 import EditProfile from "../editProfile/editProfile.component";
 import { changeUserName } from "../../services/users";
+import { userActions } from "../../redux/user/user.reducer";
+import { authorsActions } from "../../redux/authors/author.reducer";
 
 const ProfileContent = (props) => {
-  const { user, setUser, setAuthors } = props;
+  const dispatch = useDispatch();
+  const { user } = props;
   const { displayName, role, email } = user;
 
   const [isOpenPopup, setIsOpenPopup] = useState(false);
@@ -42,8 +43,8 @@ const ProfileContent = (props) => {
       await changeUserName(user.id, name);
       setInputError(false);
       setIsOpenPopup(false);
-      setUser({ ...user, displayName: name });
-      setAuthors(await getDataList("/users"));
+      dispatch(userActions.setUser({ ...user, displayName: name }));
+      dispatch(authorsActions.setAuthors(await getDataList("/users")));
     }
   };
 
@@ -83,12 +84,4 @@ const ProfileContent = (props) => {
   );
 }
 
-const mapDispatchToProps = dispatch => ({
-  setUser: user => dispatch(setUser(user)),
-  setAuthors: authors => dispatch(setAuthors(authors))
-});
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(Spinner(ProfileContent));
+export default Spinner(ProfileContent);

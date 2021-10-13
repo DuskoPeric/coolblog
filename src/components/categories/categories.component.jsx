@@ -2,16 +2,17 @@ import React, { useState, useEffect } from "react";
 
 import "./categories.style.scss";
 
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectCategories } from "../../redux/categories/categories.selectors";
-import { setFilteredId, setFiltereBy } from "../../redux/posts/posts.actions";
 
 import SpinnerFilter from "../spinner/spinnerFilter.component";
+import { postsActions } from "../../redux/posts/posts.reducer";
 
 const Categories = (props) => {
+  const dispatch = useDispatch();
+  const categories = useSelector(state => selectCategories(state))
 
   const {
-    categories,
     filterByCategory,
     filterBy,
     setSelected,
@@ -22,8 +23,8 @@ const Categories = (props) => {
 
   useEffect(() => {
     return () => {
-      filterByCategory(null);
-      filterBy("");
+      dispatch(postsActions.setFiltereBy(""));
+      dispatch(postsActions.setFilteredId(null));
       setSelected("");
     }
   }, []);
@@ -34,8 +35,8 @@ const Categories = (props) => {
       {open && <ul>
         <li
           onClick={() => {
-            filterByCategory(null);
-            filterBy("");
+            dispatch(postsActions.setFiltereBy(""));
+            dispatch(postsActions.setFilteredId(null));
             setSelected("");
           }}
         >
@@ -47,8 +48,8 @@ const Categories = (props) => {
               key={category.id}
               className={selected === category.id ? "selected" : ""}
               onClick={() => {
-                filterByCategory(category.id);
-                filterBy("category");
+                dispatch(postsActions.setFiltereBy("category"));
+                dispatch(postsActions.setFilteredId(category.id));
                 setSelected(category.id);
               }}
             >
@@ -61,18 +62,5 @@ const Categories = (props) => {
   );
 
 }
-const mapStateToProps = state => ({
-  categories: selectCategories(state)
-});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    filterByCategory: id => dispatch(setFilteredId(id)),
-    filterBy: by => dispatch(setFiltereBy(by))
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SpinnerFilter(Categories));
+export default SpinnerFilter(Categories);

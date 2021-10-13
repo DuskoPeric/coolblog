@@ -1,14 +1,19 @@
-import React, { Component } from "react";
+import React from "react";
 
 import "./mypostspage.style.scss";
 
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectFilteredPosts } from "../../redux/posts/posts.selectors";
 
 import MyPostsContent from "../../components/mypostsContent/mypostsContent.component";
 
 
-const MyPostsPage = ({ isLoaded, myPosts }) => {
+const MyPostsPage = () => {
+  const isLoaded=useSelector(state=>state.posts.postsLoaded);
+  const myPosts=useSelector(state=>selectFilteredPosts(
+    state.user.user ? state.user.user.id : null,
+    "author"
+  )(state))
   return (
     <MyPostsContent
       isLoaded={isLoaded}
@@ -17,15 +22,4 @@ const MyPostsPage = ({ isLoaded, myPosts }) => {
   );
 }
 
-const mapStateToProps = state => ({
-  isLoaded: state.posts.postsLoaded,
-  myPosts: selectFilteredPosts(
-    state.user.user ? state.user.user.id : null,
-    "author"
-  )(state)
-});
-
-export default connect(
-  mapStateToProps,
-  null
-)(MyPostsPage);
+export default MyPostsPage;

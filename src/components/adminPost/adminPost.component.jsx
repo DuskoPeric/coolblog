@@ -4,12 +4,15 @@ import "./adminPost.style.scss";
 
 import { timestampConvertor } from "../../services/Utils";
 
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectSpecificAuthors } from "../../redux/authors/author.selectors";
 import { selectSpecificCategory } from "../../redux/categories/categories.selectors";
 
 const AdminPost = (props) => {
-  const { title, id, published, commentsNo } = props.post;
+  const { title, id, published, commentsNo,authorId,categoryId } = props.post;
+  const author=useSelector(state=>selectSpecificAuthors(authorId)(state));
+  const category=useSelector(state=>selectSpecificCategory(categoryId)(state))
+
   return (
     <div className="item-tab">
       <div className="item-published">
@@ -18,8 +21,8 @@ const AdminPost = (props) => {
       <div className="item-title">
         <p>{title}</p>
       </div>
-      <div className="item-author">{props.author}</div>
-      <div className="item-category">{props.category}</div>
+      <div className="item-author">{author}</div>
+      <div className="item-category">{category}</div>
       <div className="item-comments">
         <div>{commentsNo}</div>
         <span onClick={() => {
@@ -34,9 +37,5 @@ const AdminPost = (props) => {
     </div>
   );
 }
-const mapStateToProps = (state, ownProps) => ({
-  author: selectSpecificAuthors(ownProps.post.authorId)(state),
-  category: selectSpecificCategory(ownProps.post.categoryId)(state)
-});
 
-export default connect(mapStateToProps)(AdminPost);
+export default AdminPost;

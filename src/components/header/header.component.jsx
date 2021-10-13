@@ -1,12 +1,13 @@
 import React, { Fragment, useState } from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import "./header.style.scss";
 import { Link, NavLink } from "react-router-dom";
 import { auth } from "../../firebase/firebase.utils";
 import Button from "../button/button.component";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 
-const Header = ({ user }) => {
+const Header = () => {
+  const user=useSelector(state=>selectCurrentUser(state))
   const [openMenu, setOpenMenu] = useState(false)
   return (
     <header>
@@ -118,8 +119,5 @@ const Header = ({ user }) => {
     </header>
   );
 };
-const mapStateToProps = state => ({
-  user: selectCurrentUser(state)
-});
 
-export default connect(mapStateToProps)(Header);
+export default Header;

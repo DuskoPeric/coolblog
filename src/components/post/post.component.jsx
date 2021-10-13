@@ -5,10 +5,11 @@ import "./post.style.scss";
 
 import { timestampConvertor } from "../../services/Utils";
 
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectSpecificAuthors } from "../../redux/authors/author.selectors";
 
-const Post = ({ post, author, state }) => {
+const Post = ({ post, state }) => {
+  const author=useSelector(state=>selectSpecificAuthors(post.authorId)(state))
   return (
     <div className="post">
       <Link to={{ pathname: `post/${post.id}`, state: state }}>
@@ -30,8 +31,5 @@ const Post = ({ post, author, state }) => {
     </div>
   );
 };
-const mapStateToProps = (state, ownProps) => ({
-  author: selectSpecificAuthors(ownProps.post.authorId)(state)
-});
 
-export default connect(mapStateToProps)(Post);
+export default Post;

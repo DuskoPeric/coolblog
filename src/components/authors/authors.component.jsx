@@ -2,17 +2,16 @@ import React, { useState } from "react";
 
 import "./authors.style.scss";
 
-import { connect } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { selectAuthors } from "../../redux/authors/author.selectors";
-import { setFilteredId, setFiltereBy } from "../../redux/posts/posts.actions";
 
 import SpinnerFilter from "../spinner/spinnerFilter.component";
+import { postsActions } from "../../redux/posts/posts.reducer";
 
 const Authors = (props) => {
+  const dispatch=useDispatch();
+  const authors=useSelector(state=>selectAuthors(state))
   const {
-    authors,
-    filterByAuthor,
-    filterBy,
     selected,
     setSelected
   } = props;
@@ -25,8 +24,8 @@ const Authors = (props) => {
       {open && <ul>
         <li
           onClick={() => {
-            filterByAuthor(null);
-            filterBy("");
+            dispatch(postsActions.setFilteredId(null));
+            dispatch(postsActions.setFiltereBy(""));
             setSelected("");
           }}
         >
@@ -37,8 +36,8 @@ const Authors = (props) => {
             <li
               className={selected === author.id ? "selected" : ""}
               onClick={() => {
-                filterByAuthor(author.id);
-                filterBy("author");
+                dispatch(postsActions.setFilteredId(author.id));
+                dispatch(postsActions.setFiltereBy("author"));
                 setSelected(author.id);
               }}
               key={author.id}
@@ -52,18 +51,4 @@ const Authors = (props) => {
   );
 }
 
-const mapStateToProps = state => ({
-  authors: selectAuthors(state)
-});
-
-const mapDispatchToProps = dispatch => {
-  return {
-    filterByAuthor: id => dispatch(setFilteredId(id)),
-    filterBy: by => dispatch(setFiltereBy(by))
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SpinnerFilter(Authors));
+export default SpinnerFilter(Authors);

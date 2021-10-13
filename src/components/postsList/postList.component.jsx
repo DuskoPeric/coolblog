@@ -2,7 +2,7 @@ import React from "react";
 
 import "./postList.style.scss";
 
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   selectFilteredPosts,
   selectedFilterId,
@@ -13,8 +13,10 @@ import Post from "../post/post.component";
 import Spinner from "../spinner/spinner.component";
 import EmptyList from "../emptyList/emptyList.component";
 
-const PostList = props => {
-  const { posts } = props;
+const PostList = () => {
+  const posts = useSelector(state=>selectFilteredPosts(selectedFilterId(state), selectFilterBy(state))(
+    state
+  ));
 
   const postsList =
     posts.length > 0 ? (
@@ -28,10 +30,5 @@ const PostList = props => {
   return <div className="posts-holder flex">{postsList}</div>;
 };
 
-const mapStateToProps = state => ({
-  posts: selectFilteredPosts(selectedFilterId(state), selectFilterBy(state))(
-    state
-  )
-});
 
-export default connect(mapStateToProps)(Spinner(PostList));
+export default Spinner(PostList);

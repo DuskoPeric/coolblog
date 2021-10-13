@@ -4,20 +4,23 @@ import { Redirect } from "react-router-dom";
 import { firestore } from "../../firebase/firebase.utils";
 import { getDataList } from "../../services/Utils";
 
-import { connect } from "react-redux";
+import {  useSelector,useDispatch } from "react-redux";
 import {
   selectCategories,
   isCategoriesLoaded
 } from "../../redux/categories/categories.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
-import { setPosts } from "../../redux/posts/posts.actions";
 
 import PostForm from "../../components/postForm/postForm.component";
 import { editPost } from "../../services/posts";
+import { postsActions } from "../../redux/posts/posts.reducer";
 
 
 const EditPostPage = (props) => {
-
+  const dispatch=useDispatch();
+  const author=useSelector(state =>selectCurrentUser(state))
+  const areCategoriesLoaded=useSelector(state =>isCategoriesLoaded(state))
+  const categories=useSelector(state =>selectCategories(state))
   const [data, setData] = useState({
     title: "",
     shortDescription: "",
@@ -54,7 +57,7 @@ const EditPostPage = (props) => {
     if (emptyFields.length === 0) {
       try {
         await editPost(data, props.match.params.postId)
-        props.setPosts(await getDataList("/posts"));
+        dispatch(postsActions.setPosts(await getDataList("/posts")));
         props.history.push("/");
       } catch (error) {
         alert("error edit post " + error.message);
@@ -89,10 +92,10 @@ const EditPostPage = (props) => {
   };
 
   if (data.authorId !== undefined) {
-    if (props.author === null) {
+    if (author === null) {
       return <Redirect to="/" />;
     }
-    if (props.author.id !== data.authorId) {
+    if (author.id !== data.authorId) {
       return <Redirect to="/" />;
     }
   }
@@ -107,7 +110,7 @@ const EditPostPage = (props) => {
         checkContent={checkContent}
         content={data.content}
         category={data.categoryId}
-        selectOptions={props.categories}
+        selectOptions={categories}
         notValid={emptyFields}
         data={data}
         isDataLoaded={isDataLoaded}
@@ -119,16 +122,5 @@ const EditPostPage = (props) => {
   );
 
 }
-const mapStateToProps = state => ({
-  categories: selectCategories(state),
-  areCategoriesLoaded: isCategoriesLoaded(state),
-  author: selectCurrentUser(state)
-});
-const mapDispatchToProps = dispatch => ({
-  setPosts: posts => dispatch(setPosts(posts))
-});
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(EditPostPage);
+export default EditPostPage;

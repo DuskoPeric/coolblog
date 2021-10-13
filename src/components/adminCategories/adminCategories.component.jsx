@@ -10,19 +10,23 @@ import {
 } from "../../services/categories";
 import { getDataList } from "../../services/Utils";
 
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectCategories } from "../../redux/categories/categories.selectors";
 import { selectCurrentPosts } from "../../redux/posts/posts.selectors";
-import { setPosts } from "../../redux/posts/posts.actions";
-import { setCategories } from "../../redux/categories/categories.actions";
 
 import AdminCategory from "../adminCategory/adminCategory.component";
 import Popup from "../popup/popup.component";
 import DeleteItem from "../deleteItem/deleteItem.component";
 import Button from "../button/button.component";
 import EditItem from "../editItem/editItem.component";
+import { postsActions } from "../../redux/posts/posts.reducer";
+import { categoriesActions } from "../../redux/categories/categories.reducer";
 
 const AdminCategories = (props) => {
+  const dispatch = useDispatch();
+  const categories = useSelector(state => selectCategories(state));
+  const posts = useSelector(state => selectCurrentPosts(state));
+
 
   const [isOpenDeletePopup, setIsOpenDeletePopup] = useState(false);
   const [isOpenEditPopup, setIsOpenEditPopup] = useState(false);
@@ -31,30 +35,28 @@ const AdminCategories = (props) => {
   const [activeCategory, setActiveCategory] = useState(null);
 
   const deleteSelectedCategory = async () => {
-    for (let i = 0; i < props.posts.length; i++) {
-      if (props.posts[i].categoryId === activeCategory) {
-        deletePost(props.posts[i].id);
+    for (let i = 0; i < posts.length; i++) {
+      if (posts[i].categoryId === activeCategory) {
+        deletePost(posts[i].id);
       }
     }
     deleteCategory(activeCategory);
-    await props.setPosts(await getDataList("/posts"));
-    await props.setCategories(await getDataList("/categories"));
+    await dispatch(postsActions.setPosts(await getDataList("/posts")));
+    await dispatch(categoriesActions.setCategories(await getDataList("/categories")));
     setIsOpenDeletePopup(false)
   };
 
   const editCategory = async name => {
     await updateCategory(activeCategory, name);
-    props.setCategories(await getDataList("/categories"));
+    await dispatch(categoriesActions.setCategories(await getDataList("/categories")));
     setIsOpenEditPopup(false)
   };
 
   const addNewCategory = async name => {
     await addCategory(name);
-    props.setCategories(await getDataList("/categories"));
+    await dispatch(categoriesActions.setCategories(await getDataList("/categories")));
     setIsOpenAddPopup(false)
   };
-
-  const { categories } = props;
 
   return (
     <div>
@@ -116,17 +118,5 @@ const AdminCategories = (props) => {
     </div>
   );
 }
-const mapStateToProps = state => ({
-  categories: selectCategories(state),
-  posts: selectCurrentPosts(state)
-});
 
-const mapDispatchToProps = dispatch => ({
-  setPosts: posts => dispatch(setPosts(posts)),
-  setCategories: categories => dispatch(setCategories(categories))
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AdminCategories);
+export default AdminCategories;

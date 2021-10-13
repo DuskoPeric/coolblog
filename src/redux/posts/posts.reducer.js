@@ -1,5 +1,4 @@
-import "./posts.types";
-import postsTypes from "./posts.types";
+import { createSlice } from '@reduxjs/toolkit';
 const INITIAL_STATE = {
   posts: [],
   filterBy: "",
@@ -7,23 +6,30 @@ const INITIAL_STATE = {
   postsLoaded: false
 };
 
-const postsReducer = (state = INITIAL_STATE, action) => {
-  switch (action.type) {
-    case postsTypes.SET_POSTS:
+const postsSlice = createSlice({
+  name: 'posts',
+  initialState: INITIAL_STATE,
+  reducers: {
+    setPosts(state, action) {
       return { ...state, posts: action.payload, postsLoaded: true };
-    case postsTypes.SET_FILTERID:
+    },
+    setFilteredId(state, action) {
       return {
         ...state,
         filteredId: action.payload
       };
-    case postsTypes.SET_FILTERBY:
+    },
+    setFiltereBy(state, action) {
       return {
         ...state,
         filterBy: action.payload
       };
-    default:
-      return state;
+    }
   }
-};
+})
+
+
+const postsReducer=postsSlice.reducer;
+export const postsActions=postsSlice.actions;
 
 export default postsReducer;

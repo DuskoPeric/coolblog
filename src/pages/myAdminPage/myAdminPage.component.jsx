@@ -3,7 +3,7 @@ import { Route, NavLink, useHistory } from "react-router-dom";
 
 import "./myAdminPage.style.scss";
 
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 import AdminPosts from "../../components/adminPosts/adminPosts.component";
@@ -11,19 +11,20 @@ import AdminUsers from "../../components/adminUsers/adminUsers.component";
 import AdminCategories from "../../components/adminCategories/adminCategories.component";
 
 const MyAdminPage = (props) => {
+  const user=useSelector(state=>selectCurrentUser(state));
+  const isLoaded=useSelector(state=>state.posts.postsLoaded);
   const history = useHistory();
 
   useEffect(() => {
-    if (props.user) {
-      if (props.user.role !== 3) {
+    if (user) {
+      if (user.role !== 3) {
         history.push("/");
       }
     } else {
       history.push("/");
     }
-  }, [props.user])
+  }, [user])
 
-  const { isLoaded } = props;
 
   return (
     <div className="admin-panel container ">
@@ -61,12 +62,6 @@ const MyAdminPage = (props) => {
     </div>
   );
 }
-const mapStateToProps = state => ({
-  user: selectCurrentUser(state),
-  isLoaded: state.posts.postsLoaded
-});
 
-export default connect(
-  mapStateToProps,
-  null
-)(MyAdminPage);
+
+export default MyAdminPage;

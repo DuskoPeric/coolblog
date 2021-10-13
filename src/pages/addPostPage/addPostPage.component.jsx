@@ -3,19 +3,24 @@ import { useHistory } from "react-router-dom";
 
 import { getDataList } from "../../services/Utils";
 
-import { connect } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import {
   selectCategories,
   isCategoriesLoaded
 } from "../../redux/categories/categories.selectors";
-import { setPosts } from "../../redux/posts/posts.actions";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 
 import PostForm from "../../components/postForm/postForm.component";
 import { addPost } from "../../services/posts";
+import { postsActions } from "../../redux/posts/posts.reducer";
 
 
 const AddPostPage = (props) => {
+  const dispatch=useDispatch();
+  const author=useSelector(state =>selectCurrentUser(state))
+  const areCategoriesLoaded=useSelector(state =>isCategoriesLoaded(state))
+  const categories=useSelector(state =>selectCategories(state))
+
   const history = useHistory();
 
   const [data, setData] = useState({
@@ -23,7 +28,7 @@ const AddPostPage = (props) => {
     shortDescription: "",
     imgUrl: "",
     content: "",
-    categoryId: props.categories[0].id
+    categoryId: categories[0].id
   })
   const [emptyFields, setEmptyFields] = useState([]);
 
@@ -39,8 +44,8 @@ const AddPostPage = (props) => {
     }
     if (data.content !== '' && data.shortDescription !== '' && data.title !== '' && emptyFields.length === 0) {
       try {
-        await addPost(data, props.author.id);
-        props.setPosts(await getDataList("/posts"));
+        await addPost(data, author.id);
+        dispatch(postsActions.setPosts(await getDataList("/posts")));
         history.push("/");
       } catch (error) {
         alert("error creating post " + error.message);
@@ -85,7 +90,7 @@ const AddPostPage = (props) => {
         checkContent={checkContent}
         content={data.content}
         category={data.categoryId}
-        selectOptions={props.categories}
+        selectOptions={categories}
         notValid={emptyFields}
         data={data}
         isDataLoaded={true}
@@ -96,16 +101,5 @@ const AddPostPage = (props) => {
     </div>
   );
 }
-const mapStateToProps = state => ({
-  categories: selectCategories(state),
-  areCategoriesLoaded: isCategoriesLoaded(state),
-  author: selectCurrentUser(state)
-});
-const mapDispatchToProps = dispatch => ({
-  setPosts: posts => dispatch(setPosts(posts))
-});
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AddPostPage);
+export default AddPostPage;

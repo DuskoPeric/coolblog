@@ -6,12 +6,8 @@ import { getDataList } from "./services/Utils";
 
 import "./App.scss";
 
-import { connect } from "react-redux";
-import { setUser } from "./redux/user/user.actions";
-import { setPosts } from "./redux/posts/posts.actions";
+import { useSelector,useDispatch } from "react-redux";
 import { selectCurrentUser } from "./redux/user/user.selectors";
-import { setAuthors } from "./redux/authors/authors.actions";
-import { setCategories } from "./redux/categories/categories.actions";
 
 import Header from "./components/header/header.component";
 import SignInPage from "./pages/register-signin/register-signin.component";
@@ -24,17 +20,22 @@ import EditPostPage from "./pages/editPostPage/editPostPage.component";
 import MyAdminPage from "./pages/myAdminPage/myAdminPage.component";
 import PostPage from "./pages/postpage/postpage.component";
 import Notification from "./components/notification/notification.component";
+import { userActions } from "./redux/user/user.reducer";
+import { postsActions } from "./redux/posts/posts.reducer";
+import { categoriesActions } from "./redux/categories/categories.reducer";
+import { authorsActions } from "./redux/authors/author.reducer";
 
 
-const App = (props) => {
+const App = () => {
+  const dispatch=useDispatch();
+  const user=useSelector(state=>selectCurrentUser(state))
   let unsubscribe = null;
-  const { setUser, user,setPosts,setAuthors,setCategories } = props;
   const [showNotification, setShowNotification] = useState(false)
 
   const getData = async () => {
-    setPosts(await getDataList("/posts"));
-    setAuthors(await getDataList("/users"));
-    setCategories(await getDataList("/categories"));
+    dispatch(postsActions.setPosts(await getDataList("/posts")));
+    dispatch(authorsActions.setAuthors(await getDataList("/users")));
+    dispatch(categoriesActions.setCategories(await getDataList("/categories")));
   };
 
   useEffect(() => {
@@ -43,16 +44,16 @@ const App = (props) => {
         setShowNotification(false)
         const userRef = await firestore.doc(`users/${user.uid}`);
         userRef.onSnapshot(snapShot => {
-          setUser({
+          dispatch(userActions.setUser({
             id: snapShot.id,
             ...snapShot.data()
-          });
+          }));
         });
       } else if (user && !user.emailVerified) {
         setShowNotification(true)
       }
       else if (user === null) {
-        setUser(user);
+        dispatch(userActions.setUser(user));
       }
     });
 
@@ -84,18 +85,4 @@ const App = (props) => {
   );
 }
 
-const mapStateToProps = state => ({
-  user: selectCurrentUser(state)
-});
-
-const mapDispatchToProps = dispatch => ({
-  setUser: user => dispatch(setUser(user)),
-  setPosts: posts => dispatch(setPosts(posts)),
-  setAuthors: authors => dispatch(setAuthors(authors)),
-  setCategories: categories => dispatch(setCategories(categories))
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default App;

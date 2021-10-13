@@ -2,13 +2,15 @@ import React from "react";
 
 import "./comment.style.scss";
 
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectSpecificAuthors } from "../../redux/authors/author.selectors";
 
 import { timestampConvertor } from "../../services/Utils";
 
 const Comment = props => {
-  const { comment, author } = props;
+  
+  const { comment } = props;
+  const author=useSelector(state=>selectSpecificAuthors(comment.authorId)(state))
   return (
     <div className="comment-content">
       <p className="author">{author}</p>
@@ -17,8 +19,5 @@ const Comment = props => {
     </div>
   );
 };
-const mapStateToProps = (state, ownProps) => ({
-  author: selectSpecificAuthors(ownProps.comment.authorId)(state)
-});
 
-export default connect(mapStateToProps)(Comment);
+export default Comment;
