@@ -4,6 +4,7 @@ import "./likedContent.style.scss";
 
 import Spinner from "../spinner/spinner.component";
 import Post from "../post/post.component";
+import EmptyList from "../emptyList/emptyList.component";
 
 
 const LikedContent = props => {
@@ -16,7 +17,7 @@ const LikedContent = props => {
             <Post key={post.id} post={post} state={{ from: "liked" }} />
           ))
         ) : (
-            <p>No liked</p>
+            <EmptyList message="I don't like anything"/>
           )}
       </div>
     </div>

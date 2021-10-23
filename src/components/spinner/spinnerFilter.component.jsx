@@ -4,6 +4,12 @@ import "./spinner.style.scss";
 
 const SpinnerFilter = Wrapped => props => {
     const { isLoaded, ...otp } = props;
+    const btmc=(<div className="content">
+                 <div className="line"></div>
+                 <div className="line"></div>
+                 <div className="line"></div>
+                </div>)
+
     return isLoaded ? (
         <Wrapped {...otp} />
     ) : (
@@ -11,11 +17,7 @@ const SpinnerFilter = Wrapped => props => {
                 <div className="top">
                     <div className="title"></div>
                 </div>
-                <div className="content">
-                    <div className="line"></div>
-                    <div className="line"></div>
-                    <div className="line"></div>
-                </div>
+
             </div>
         );
 };

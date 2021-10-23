@@ -20,6 +20,7 @@ const EditPostPage = (props) => {
   const dispatch=useDispatch();
   const author=useSelector(state =>selectCurrentUser(state))
   const areCategoriesLoaded=useSelector(state =>isCategoriesLoaded(state))
+  const [sending,setSending]=useState(false);
   const categories=useSelector(state =>selectCategories(state))
   const [data, setData] = useState({
     title: "",
@@ -55,6 +56,8 @@ const EditPostPage = (props) => {
       }
     }
     if (emptyFields.length === 0) {
+      setSending(true)
+      console.log('opa')
       try {
         await editPost(data, props.match.params.postId)
         dispatch(postsActions.setPosts(await getDataList("/posts")));
@@ -113,6 +116,7 @@ const EditPostPage = (props) => {
         selectOptions={categories}
         notValid={emptyFields}
         data={data}
+        isSending={sending}
         isDataLoaded={isDataLoaded}
         handleContent={markup => {
           handleContent(markup);

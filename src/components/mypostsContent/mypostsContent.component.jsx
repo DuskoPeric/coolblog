@@ -4,6 +4,7 @@ import "./mypostsContent.style.scss";
 
 import Spinner from "../spinner/spinner.component";
 import Post from "../post/post.component";
+import EmptyList from "../emptyList/emptyList.component";
 
 
 const MyPostsContent = ({ posts }) => {
@@ -16,7 +17,7 @@ const MyPostsContent = ({ posts }) => {
             <Post key={post.id} post={post} state={{ from: "myposts" }} />
           ))
         ) : (
-            <p>No posts</p>
+            <EmptyList message="No posts"/>
           )}
       </div>
     </div>

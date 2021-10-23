@@ -29,5 +29,8 @@
     &.selected {
       color: $base-color;
     }
+    &:hover{
+      color: $base-color;
+    }
   }
 }

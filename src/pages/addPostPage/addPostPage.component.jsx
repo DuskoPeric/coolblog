@@ -19,6 +19,7 @@ const AddPostPage = (props) => {
   const dispatch=useDispatch();
   const author=useSelector(state =>selectCurrentUser(state))
   const areCategoriesLoaded=useSelector(state =>isCategoriesLoaded(state))
+  const [sending,setSending]=useState(false);
   const categories=useSelector(state =>selectCategories(state))
 
   const history = useHistory();
@@ -43,6 +44,7 @@ const AddPostPage = (props) => {
       }
     }
     if (data.content !== '' && data.shortDescription !== '' && data.title !== '' && emptyFields.length === 0) {
+      setSending(true)
       try {
         await addPost(data, author.id);
         dispatch(postsActions.setPosts(await getDataList("/posts")));
@@ -93,6 +95,7 @@ const AddPostPage = (props) => {
         selectOptions={categories}
         notValid={emptyFields}
         data={data}
+        isSending={sending}
         isDataLoaded={true}
         handleContent={markup => {
           handleContent(markup);

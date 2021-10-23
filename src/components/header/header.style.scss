@@ -74,6 +74,13 @@ header {
           padding-bottom: 3px;
         }
       }
+      .profile-link{
+        &:hover {
+          border-bottom: none;
+          padding-bottom: 0px;
+          color:$base-color;
+        }
+      }
     }
     .liked {
       a {
@@ -104,6 +111,9 @@ header {
     }
     .logout{
       cursor: pointer;
+      &:hover{
+        color: $base-color;
+      }
     }
     @media #{$tablet}{
       display:none;

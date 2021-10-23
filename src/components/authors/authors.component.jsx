@@ -23,10 +23,11 @@ const Authors = (props) => {
       <h3 onClick={() => setOpen(!open)}>Authors {!open ? <span className="material-icons">arrow_drop_down</span> : <span className="material-icons">arrow_drop_up</span>}</h3>
       {open && <ul>
         <li
+          className={selected === "all" ? "selected" : ""}
           onClick={() => {
             dispatch(postsActions.setFilteredId(null));
             dispatch(postsActions.setFiltereBy(""));
-            setSelected("");
+            setSelected("all");
           }}
         >
           ALL

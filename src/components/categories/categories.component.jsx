@@ -34,10 +34,11 @@ const Categories = (props) => {
       <h3 className={open ? 'open' : null} onClick={() => setOpen(!open)}>Categories {!open ? <span className="material-icons">arrow_drop_down</span> : <span className="material-icons">arrow_drop_up</span>}</h3>
       {open && <ul>
         <li
+          className={selected === "allCategories" ? "selected" : ""}
           onClick={() => {
             dispatch(postsActions.setFiltereBy(""));
             dispatch(postsActions.setFilteredId(null));
-            setSelected("");
+            setSelected("allCategories");
           }}
         >
           ALL

@@ -1,6 +1,8 @@
 .emptyicon-holder {
   position: relative;
   width: 200px;
+  margin: auto;
+  margin-top: 50px;
   .icon-post-page {
     position: absolute;
     width: 150px;
@@ -69,5 +71,6 @@
     text-transform: uppercase;
     font-weight: 700;
     color: #c5a97c;
+    padding-bottom: 50px;
   }
 }

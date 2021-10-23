@@ -13,6 +13,7 @@ import Comment from "../comment/comment.component";
 import AddComment from "../addComment/addComment.component";
 import Button from "../button/button.component";
 import { addLike } from "../../services/users";
+import Spinner from "../spinner/spinner.component";
 
 
 const PostContent = (props) => {
@@ -92,7 +93,7 @@ const PostContent = (props) => {
           <div className="favorite">
             <NavLink to={"/edit/" + id}>
               <Button additionalClasses="fullshape">
-                <span class="material-icons">edit</span>Edit post
+                <span className="material-icons">edit</span>Edit post
                 </Button>
             </NavLink>
           </div>
@@ -118,4 +119,4 @@ const PostContent = (props) => {
 }
 
 
-export default withRouter(PostContent);
+export default Spinner(withRouter(PostContent)) ;

@@ -74,9 +74,9 @@ const App = () => {
         render={() => (user ? <Redirect to="/" /> : <SignInPage />)}
       />
       <Route exact path="/post/:postId" component={PostPage} />
-      <Route path="/liked" component={LikedPage} />
-      <Route path="/profile" component={ProfilePage} />
-      <Route path="/myposts" component={MyPostsPage} />
+      <Route path="/liked" render={() => (user ?<LikedPage />: <Redirect to="/" /> )}  />
+      <Route path="/profile" render={() => (user ?<ProfilePage />: <Redirect to="/" /> )} />
+      <Route path="/myposts"  render={() => (user ?<MyPostsPage />: <Redirect to="/" /> )} />
       <Route path="/addPost" render={() => (user && user.role > 1 ? <AddPostPage /> : <Redirect to="/" />)} />
       <Route path="/edit/:postId" component={EditPostPage} />
       <Route path="/myadmin" component={MyAdminPage} />

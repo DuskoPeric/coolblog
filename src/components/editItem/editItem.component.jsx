@@ -33,10 +33,10 @@ const EditItem = (props) => {
           additionalClasses="submit margin-right"
           onClick={() => submitChange(name)}
         >
-          Yes
+          Ok
           </Button>
         <Button additionalClasses="cancel" onClick={closePopup}>
-          No
+          Cancel
           </Button>
       </div>
     </div>

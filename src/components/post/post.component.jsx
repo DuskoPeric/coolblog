@@ -15,7 +15,8 @@ const Post = ({ post, state }) => {
       <Link to={{ pathname: `post/${post.id}`, state: state }}>
         <div>
           <div className="img-holder">
-            <img src={post.imgUrl ? post.imgUrl : 'https://duskoperic.com/1.jpg'} alt={post.title} />
+            {post.imgUrl ?  <img src={post.imgUrl} alt={post.title} /> : <div  className="img-plh"><p>CoolBlog</p></div>}
+           
           </div>
           <p className="author-date">
             {author} / {timestampConvertor(post.published.seconds)}

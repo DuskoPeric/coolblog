@@ -55,7 +55,7 @@ const Header = () => {
           {user ? (
             <Fragment>
               <div className="profile">
-                <Link to="/profile">
+                <Link className="profile-link" to="/profile">
                   <span className="material-icons">person</span>
                   {user.displayName}
                 </Link>

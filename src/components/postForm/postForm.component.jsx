@@ -66,7 +66,8 @@ const PostForm = props => {
         changeEvent={props.changeValue}
         value={props.data.imgUrl}
       />
-      <Button type="submit" additionalClasses='margintop20'>Publish</Button>
+      {props.isSending ? <p>Publishing...</p>:<Button type="submit" additionalClasses='margintop20'>Publish</Button>}
+      
     </form>
   );
 };

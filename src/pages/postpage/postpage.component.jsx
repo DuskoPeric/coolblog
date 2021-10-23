@@ -26,11 +26,12 @@ const PostPage = (props) => {
     );
 
     postRef.onSnapshot(snapShot => {
-      if (_isMounted && snapShot.data()) {
+      if (snapShot.data()) {
         setPost({ ...snapShot.data(), id: snapShot.id });
         setIsLoadedPost(true);
       } else {
         history.push("/");
+       
       }
     });
   };
@@ -49,23 +50,22 @@ const PostPage = (props) => {
       _isMounted = false
     };
   }, []);
-
-  return isLoadedPost && isLoadedComments && post ? (
-    <PostContent
-      post={post}
-      comments={comments}
-      onChangeComment={() => {
-        _isMounted=true;
-        getPostData();
-        getComments();
-        updateNumberOfComments(
-          post.commentsNo,
-          props.match.params.postId,
-          true
-        );
-      }}
-    />
-  ) : null;
+return(
+  <PostContent
+  isLoaded={isLoadedPost && isLoadedComments && post}
+  post={post}
+  comments={comments}
+  onChangeComment={() => {
+    getPostData();
+    getComments();
+    updateNumberOfComments(
+      post.commentsNo,
+      props.match.params.postId,
+      true
+    );
+  }}
+/>
+)
 
 }
 

@@ -127,7 +127,7 @@ const Register = () => {
 
       </form>
       {isOpenPopup && <Popup closePopup={finishRegistration}>
-        <p>Thank you for registring. We sent you a verification email</p>
+        <p className="popup-text">Thank you for registring. We sent you a verification email</p>
       </Popup>
       }
 

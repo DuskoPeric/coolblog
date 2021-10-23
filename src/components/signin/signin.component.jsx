@@ -15,11 +15,14 @@ const SignIn = () => {
 
   const handleForm = async event => {
     event.preventDefault();
+    if(auth.currentUser){
+      auth.signOut();
+    }
     try {
       await auth.signInWithEmailAndPassword(email, password);
       setEmail("");
       setPassword("");
-      history.go(0);
+      //history.go(0);
     } catch (error) {
       alert("error :" + error.message);
     }

@@ -11,7 +11,7 @@
     i {
       margin-right: 10px;
     }
-    span{
+    span {
       font-size: 32px;
       position: relative;
       top: 10px;
@@ -37,7 +37,7 @@
         margin-right: 5px;
         color: $base-color;
       }
-      span.icon{
+      span.icon {
         margin-right: 5px;
         color: $base-color;
         font-size: 17px;
@@ -67,7 +67,9 @@
     h1,
     h2,
     h3,
-    h4 {
+    h4,
+    h5,
+    h6 {
       font-weight: 400;
       font-family: "Prata", serif;
     }
@@ -85,6 +87,18 @@
       font-size: 1.5rem;
       line-height: 2rem;
       margin: 0px;
+      border-left: 5px solid #eee;
+      color: #666;
+      font-family: "Hoefler Text", "Georgia", serif;
+      font-style: italic;
+      margin: 16px 0;
+      padding: 10px 20px;
+    }
+    ul {
+      padding-left: 20px;
+      li {
+        list-style: circle;
+      }
     }
   }
   a {
