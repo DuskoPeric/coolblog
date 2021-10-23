@@ -1,7 +1,8 @@
+@import "../../style/variables.scss";
 .notification{
     position: fixed;
     bottom: 0;
-    background: #c4a97c;
+    background: $base-color;
     width: 100%;
     color: white;
     font-size: 17px;

@@ -16,7 +16,7 @@ header {
       position: relative;
       top: 3px;
       span {
-        color: $base-color-two;
+        color: $base-color;
       }
     }
     nav {
@@ -142,7 +142,7 @@ header {
     .mobile-nav{
       position: absolute;
       top: 80px;
-      background: #c4a97c;
+      background: $base-color;
       right: 0px;
       width: 200px;
       z-index: 9;

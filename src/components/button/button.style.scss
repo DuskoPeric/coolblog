@@ -1,10 +1,10 @@
 @import "../../style/variables.scss";
 .custom-btn {
   background: #c4a97c00;
-  border: solid 2px #c4a97c;
+  border: solid 2px $base-color;
   padding: 5px 15px;
   border-radius: 30px;
-  color: #c4a97c;
+  color: $base-color;
   font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -21,7 +21,7 @@
   &.fullshape {
     border-radius: 5px;
     padding: 7px 30px;
-    background: #c4a97c;
+    background: $base-color;
     color: white;
   }
   &.cancel {
@@ -51,7 +51,7 @@
     margin-top: 20px;
   }
   &:hover {
-    background: #c4a97c;
+    background: $base-color;
     color: white;
   }
 }

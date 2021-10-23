@@ -61,7 +61,7 @@
       border-radius: 50%;
       margin: auto;
       background: #ffe5bb;
-      color: #c4a97c;
+      color: $base-color;
       justify-content: center;
       align-items: center;
       margin-bottom: 5px;
@@ -73,7 +73,7 @@
       border-radius: 50%;
       margin: auto;
       background: #ffe5bb;
-      color: #c4a97c;
+      color: $base-color;
       justify-content: center;
       align-items: center;
       margin-bottom: 5px;
@@ -96,7 +96,7 @@
       top: 12px;
       left: 14px;
       font-size: 1.6rem;
-      color: #c4a97c;
+      color: $base-color;
       cursor: pointer;
       background: #ffe5bb;
       padding: 3px;
