@@ -18,3 +18,10 @@ export const getDataList = async path => {
   });
   return data;
 };
+
+export const sortData=(data,prop)=>{
+  const sortedData = data.sort(function(a, b) {
+    return new Date(b[prop].seconds * 1000) - new Date(a[prop].seconds * 1000);
+  });
+  return sortedData;
+}

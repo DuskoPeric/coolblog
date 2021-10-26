@@ -1,3 +1,26 @@
-.custom-checkbox {
-  margin-top: 20px;
+@import "../../style/variables.scss";
+.checkbox-input{
+  position: absolute;
+  transform: scale(0);
+}
+.checkbox-label{
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  .checkbox{
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 4px;
+    background: white;
+    margin-right: 15px;
+  }
+  .checkbox-tick{display: none;}
+  .checkbox-input:checked ~ .checkbox {
+    background: $base-color;
+  }
+  .checkbox-input:checked ~ .checkbox .checkbox-tick{
+    display: block;
+  }
 }

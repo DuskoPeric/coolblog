@@ -35,24 +35,23 @@ const SignIn = () => {
 
   return (
     <div className="signin">
-      <h2>I already have an account</h2>
-      <p className="subtitle">Sign in with your email and password</p>
+      <h2>Log In</h2>
       <form onSubmit={handleForm}>
         <Input
           name="email"
           type="email"
           value={email}
-          placeholder="email"
+          placeholder="Email"
           changeEvent={handleChange}
         />
         <Input
           name="password"
           type="password"
           value={password}
-          placeholder="password"
+          placeholder="Password"
           changeEvent={handleChange}
         />
-        <Button type="submit" additionalClasses="fullshape">
+        <Button type="submit" additionalClasses="full-width">
           Log In
           </Button>
       </form>

@@ -7,6 +7,11 @@ export const selectAuthors = createSelector(
   authors => authors.authors
 );
 
+export const selectAuthorsWriters = createSelector(
+  [selectAllAuthors],
+  authors => authors.authors.filter((author)=>author.role>1)
+);
+
 export const isAuthorsLoaded = createSelector(
   [selectAllAuthors],
   authors => authors.isLoaded

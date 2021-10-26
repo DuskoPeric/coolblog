@@ -3,14 +3,14 @@ import React, { useState } from "react";
 import "./authors.style.scss";
 
 import { useSelector,useDispatch } from "react-redux";
-import { selectAuthors } from "../../redux/authors/author.selectors";
+import { selectAuthors, selectAuthorsWriters } from "../../redux/authors/author.selectors";
 
 import SpinnerFilter from "../spinner/spinnerFilter.component";
 import { postsActions } from "../../redux/posts/posts.reducer";
 
 const Authors = (props) => {
   const dispatch=useDispatch();
-  const authors=useSelector(state=>selectAuthors(state))
+  const authors=useSelector(state=>selectAuthorsWriters(state))
   const {
     selected,
     setSelected

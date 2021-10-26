@@ -30,6 +30,11 @@ const Register = () => {
       setSending(false);
       return;
     }
+    if(displayName===''){
+      alert("Name must not be blank");
+      setSending(false);
+      return;
+    }
 
     try {
       auth.createUserWithEmailAndPassword(
@@ -84,8 +89,7 @@ const Register = () => {
 
   return (
     <div className="register">
-      <h2>I do not have a account</h2>
-      <p className="subtitle">Sign up with your email and password</p>
+      <h2>Sign Up</h2>
       <form onSubmit={handleForm}>
         <Input
           name="displayName"
@@ -98,21 +102,21 @@ const Register = () => {
           name="email"
           type="email"
           value={email}
-          placeholder="email"
+          placeholder="Email"
           changeEvent={handleChange}
         />
         <Input
           name="password"
           type="password"
           value={password}
-          placeholder="password"
+          placeholder="Password"
           changeEvent={handleChange}
         />
         <Input
           name="confirmPassword"
           type="password"
           value={confirmPassword}
-          placeholder="confirm password"
+          placeholder="Confirm password"
           changeEvent={handleChange}
         />
         <Checkbox
@@ -121,7 +125,7 @@ const Register = () => {
           value={isWriter}
           name="isWriter"
         />
-        {!sending ? <Button type="submit" additionalClasses="fullshape">
+        {!sending ? <Button type="submit" additionalClasses="full-width">
           Register
           </Button> : <p>Sending...</p>}
 

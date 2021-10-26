@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "./adminPosts.style.scss";
 
-import { getDataList } from "../../services/Utils";
+import { getDataList, sortData } from "../../services/Utils";
 
 import { useSelector,useDispatch } from "react-redux";
 import { selectCurrentPosts } from "../../redux/posts/posts.selectors";
@@ -26,7 +26,7 @@ const AdminPosts = (props) => {
   const deleteSelectedPost = async () => {
     await deletePost(activePost);
     setPostLoaded(false);
-    await dispatch(postsActions.setPosts(await getDataList("/posts")));
+    await dispatch(postsActions.setPosts(sortData(await getDataList("/posts"),'published')));
     setPostLoaded(true);
     setIsOpenPopup(false);
   };

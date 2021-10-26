@@ -29,7 +29,7 @@ const AddPostPage = (props) => {
     shortDescription: "",
     imgUrl: "",
     content: "",
-    categoryId: categories[0].id
+    categoryId: categories[0]? categories[0].id:null
   })
   const [emptyFields, setEmptyFields] = useState([]);
 
@@ -85,7 +85,8 @@ const AddPostPage = (props) => {
   return (
     <div className="add-post-page container">
       <h1>Write new post</h1>
-      <PostForm
+      {categories.length===0 ? <p>Administrator needs to create at least one category first </p> :
+        <PostForm
         submitForm={handleSubmitForm}
         changeValue={handleChange}
         changeBlur={handleBlur}
@@ -100,7 +101,8 @@ const AddPostPage = (props) => {
         handleContent={markup => {
           handleContent(markup);
         }}
-      />
+      />}
+
     </div>
   );
 }

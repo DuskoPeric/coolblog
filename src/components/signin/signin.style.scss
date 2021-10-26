@@ -1,25 +1,27 @@
 @import "../../style/variables.scss";
 .signin {
   font-family: $base-font;
-  width: 50%;
-  @media #{$tablet}{
+  max-width: 80%;
+  width: 100%;
+  @media #{$tablet} {
     width: 100%;
     margin-bottom: 50px;
   }
-  .subtitle {
-    font-weight: 300;
-    font-size: 1.1rem;
-    margin-top: 5px;
-    margin-bottom: 40px;
-  }
   h2 {
-    font-weight: 500;
-    margin-bottom: 5px;
+    text-align: left;
+    margin-top: 0px;
+    font-weight: 300;
+    margin-bottom: 50px;
+    color: #75654a;
+    font-size: 35px;
   }
   form {
-    width: 300px;
-    margin: auto;
     max-width: 100%;
+    input {
+      background: transparent;
+      margin-bottom: 30px;
+    }
+
     button {
       margin-top: 30px;
     }

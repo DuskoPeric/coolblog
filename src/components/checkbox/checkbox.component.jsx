@@ -4,9 +4,15 @@ import "./checkbox.style.scss";
 
 const Checkbox = ({ text, changeEvent, ...otp }) => {
   return (
-    <div className="custom-checkbox">
-      <input type="checkbox" {...otp} onChange={changeEvent} /> {text}
-    </div>
+    <label className="checkbox-label">
+      <input type="checkbox" {...otp} onChange={changeEvent} className="checkbox-input"/> 
+      <span className="checkbox">
+      <span className="material-icons checkbox-tick">
+      done
+      </span>
+      </span>{text}
+    </label>
+
   );
 };
 

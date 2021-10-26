@@ -57,7 +57,6 @@ const EditPostPage = (props) => {
     }
     if (emptyFields.length === 0) {
       setSending(true)
-      console.log('opa')
       try {
         await editPost(data, props.match.params.postId)
         dispatch(postsActions.setPosts(await getDataList("/posts")));

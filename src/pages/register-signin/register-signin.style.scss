@@ -3,7 +3,80 @@
 .login-holder {
   margin-top: 50px;
   margin-bottom: 50px;
-  @media #{$tablet}{
+  .signin-card {
+    overflow: hidden;
+    position: relative;
+    width: 900px;
+    height: 550px;
+    background: $base-color;
+    margin: auto;
+    -webkit-box-shadow: 10px 10px 25px -4px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 10px 10px 25px -4px rgba(0, 0, 0, 0.1);
+    box-shadow: 10px 10px 25px -4px rgba(0, 0, 0, 0.1);
+    transition: all 0.6s;
+    &.darker{
+      background:#a08a64;
+    }
+    .action-holder {
+      z-index: 1;
+      position: relative;
+      height: 100%;
+      width: 50%;
+      background: #ede4d7;
+      box-sizing: border-box;
+      margin-left: 0%;
+      transition: all 0.6s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &.register-block {
+        margin-left: 50%;
+      }
+    }
+    .left-card-content {
+      z-index: 0;
+      position: absolute;
+      top: 150px;
+      left: 100px;
+      opacity: 1;
+      transition:all 0.3s;
+      h3 {
+        font-size: 2rem;
+        color: white;
+        font-weight: 700;
+      }
+      &.hidde-content {
+        opacity: 0;
+        transition:all 0.3s;
+      }
+    }
+    .right-card-content {
+      z-index: 0;
+      position: absolute;
+      top: 150px;
+      right: 100px;
+      opacity: 1;
+      transition:all 0.3s;
+      h3 {
+        font-size: 2rem;
+        color: white;
+        font-weight: 700;
+      }
+      &.hidde-content {
+        opacity: 0;
+        transition:all 0.3s;
+      }
+    }
+    .sea{
+      position: absolute;
+      width: 900px;
+      height: 150px;
+      bottom: 0px;
+      //background: #ffffff78;
+      background: #ffffff3b;
+    }
+  }
+  @media #{$tablet} {
     flex-wrap: wrap;
   }
 }

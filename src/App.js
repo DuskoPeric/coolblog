@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Route, Redirect } from "react-router-dom";
 
 import { auth, firestore } from "./firebase/firebase.utils";
-import { getDataList } from "./services/Utils";
+import { getDataList, sortData } from "./services/Utils";
 
 import "./App.scss";
 
@@ -33,7 +33,7 @@ const App = () => {
   const [showNotification, setShowNotification] = useState(false)
 
   const getData = async () => {
-    dispatch(postsActions.setPosts(await getDataList("/posts")));
+    dispatch(postsActions.setPosts(sortData(await getDataList("/posts"),'published')));
     dispatch(authorsActions.setAuthors(await getDataList("/users")));
     dispatch(categoriesActions.setCategories(await getDataList("/categories")));
   };

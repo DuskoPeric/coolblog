@@ -1,0 +1,70 @@
+.graphic{
+    z-index: 0;
+    position: absolute;
+    bottom: 200px;
+    &.reverse{
+      transform: rotate(180deg);
+      right:0px;
+      bottom: 100px;
+    }
+    .sq{
+      background: black;
+      transform: rotate(45deg);
+      position: absolute;
+      &.sq-1{
+        width: 100px;
+        height: 100px;
+        left: -30px;
+        //background: #433c44;
+        background: #6b6150;
+      }
+      &.sq-2{
+        width: 90px;
+        height: 90px;
+        left: 40px;
+        top:5px;
+        //background: #554e55;
+        background: #807055;
+      }
+      &.sq-3{
+        width: 84px;
+        height: 84px;
+        left: 110px;
+        top:8px;
+        //background: #676269;
+        background: #9a8663;
+      }
+      &.sq-4{
+        width: 78px;
+        height: 78px;
+        left: 190px;
+        top:11px;
+        //background: #79777c;
+        background: #b39b72;
+      }
+      &.sq-5{
+        width: 66px;
+        height: 66px;
+        left: 260px;
+        top:17px;
+        //background: #8c8b90;
+        background: #cab591;
+      }
+      &.sq-6{
+        width: 56px;
+        height: 56px;
+        left: 330px;
+        top:22px;
+        //background: #b2b3b7;
+        background: #d2c0a1;
+      }
+      &.sq-7{
+        width: 46px;
+        height: 46px;
+        left: 393px;
+        top:26px;
+        //background: #bdbec2;
+        background: #e0d7c6;
+      }
+    }
+  }
