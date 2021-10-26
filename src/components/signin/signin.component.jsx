@@ -11,6 +11,7 @@ import Input from "../input/input.component";
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [formError, setFormError] = useState('')
   const history = useHistory()
 
   const handleForm = async event => {
@@ -22,13 +23,15 @@ const SignIn = () => {
       await auth.signInWithEmailAndPassword(email, password);
       setEmail("");
       setPassword("");
+      setFormError("");
       //history.go(0);
     } catch (error) {
-      alert("error :" + error.message);
+      setFormError(error.message)
     }
   };
 
   const handleChange = event => {
+    setFormError('');
     const { value, name } = event.target;
     name === 'email' ? setEmail(value) : setPassword(value);
   };
@@ -36,6 +39,7 @@ const SignIn = () => {
   return (
     <div className="signin">
       <h2>Log In</h2>
+      {formError!==''?<div className="error-box">{formError}</div>:null}
       <form onSubmit={handleForm}>
         <Input
           name="email"

@@ -19,6 +19,7 @@ const Register = () => {
   const [isWriter, setIsWriter] = useState(false);
   const [isOpenPopup, setIsOpenPopup] = useState(false);
   const [sending, setSending] = useState(false);
+  const [formError, setFormError] = useState('')
   const history = useHistory();
 
   const handleForm = async event => {
@@ -26,12 +27,12 @@ const Register = () => {
     setSending(true)
 
     if (password !== confirmPassword) {
-      alert("passwords dont match");
+      setFormError("Passwords do not match")
       setSending(false);
       return;
     }
     if(displayName===''){
-      alert("Name must not be blank");
+      setFormError("Name must not be blank")
       setSending(false);
       return;
     }
@@ -47,6 +48,7 @@ const Register = () => {
         setEmail('');
         setPassword('');
         setConfirmPassword('');
+        setFormError('');
         var usere = auth.currentUser;
 
         usere.sendEmailVerification().then(function () {
@@ -56,23 +58,24 @@ const Register = () => {
 
         }).catch(function (error) {
           setSending(false)
-          alert(error.message)
+          setFormError(error.message)
         });
-      }).catch(error => { alert(error.message); setSending(false) });
+      }).catch(error => { setFormError(error.message); setSending(false) });
 
 
 
     } catch (error) {
-      alert("error : " + error.message);
+      setFormError(error.message);
     }
   };
 
-  const finishRegistration = () => {
+  const finishRegistration = () => {  
     setIsOpenPopup(false)
     history.push("/");
   }
 
   const handleChange = event => {
+    setFormError('');
     const { value, name, checked } = event.target;
     if (name === "isWriter") {
       setIsWriter(checked)
@@ -90,6 +93,7 @@ const Register = () => {
   return (
     <div className="register">
       <h2>Sign Up</h2>
+      {formError!==''?<div className="error-box">{formError}</div>:null}
       <form onSubmit={handleForm}>
         <Input
           name="displayName"

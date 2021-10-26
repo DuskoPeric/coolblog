@@ -14,8 +14,31 @@
     -moz-box-shadow: 10px 10px 25px -4px rgba(0, 0, 0, 0.1);
     box-shadow: 10px 10px 25px -4px rgba(0, 0, 0, 0.1);
     transition: all 0.6s;
-    &.darker{
-      background:#a08a64;
+    .mobile-switch-header {
+      width: 100%;
+      height: 44px;
+      background: #d2c0a1;
+      display: none;
+      &>div{
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        &.active{
+          background: #EAE4D1;
+          color:$base-color;
+        }
+      }
+      @media #{$tablet} {
+        display: flex;
+      }
+    }
+    &.darker {
+      background: #a08a64;
     }
     .action-holder {
       z-index: 1;
@@ -31,6 +54,14 @@
       justify-content: center;
       &.register-block {
         margin-left: 50%;
+        @media #{$tablet} {
+          margin-left: 0%;
+        }
+      }
+      @media #{$tablet} {
+        width: 100%;
+        padding-bottom: 50px;
+        padding-top: 50px;
       }
     }
     .left-card-content {
@@ -39,7 +70,7 @@
       top: 150px;
       left: 100px;
       opacity: 1;
-      transition:all 0.3s;
+      transition: all 0.3s;
       h3 {
         font-size: 2rem;
         color: white;
@@ -47,7 +78,7 @@
       }
       &.hidde-content {
         opacity: 0;
-        transition:all 0.3s;
+        transition: all 0.3s;
       }
     }
     .right-card-content {
@@ -56,7 +87,7 @@
       top: 150px;
       right: 100px;
       opacity: 1;
-      transition:all 0.3s;
+      transition: all 0.3s;
       h3 {
         font-size: 2rem;
         color: white;
@@ -64,10 +95,10 @@
       }
       &.hidde-content {
         opacity: 0;
-        transition:all 0.3s;
+        transition: all 0.3s;
       }
     }
-    .sea{
+    .sea {
       position: absolute;
       width: 900px;
       height: 150px;
@@ -75,8 +106,12 @@
       //background: #ffffff78;
       background: #ffffff3b;
     }
+    @media #{$tablet} {
+      height: auto;
+    }
   }
   @media #{$tablet} {
     flex-wrap: wrap;
+
   }
 }

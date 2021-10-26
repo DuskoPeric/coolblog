@@ -12,6 +12,10 @@ const SignInPage = () => {
   return (
     <div className="container flex login-holder">
       <div className={`signin-card ${!register ? "" : "darker"}`}>
+      <div className="mobile-switch-header">
+        <div className={register?'active':''} onClick={() => { setRegister(true) }} >Sign Up</div>
+        <div className={!register?'active':''} onClick={() => { setRegister(false) }}>Log in</div>
+      </div>
         <div className={`left-card-content ${!register ? "" : "hidde-content"}`}>
           <h3>Create Account</h3>
           <Button onClick={() => { setRegister(true) }} additionalClasses="slide-btn">Sign Up</Button>
